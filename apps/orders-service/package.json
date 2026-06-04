@@ -1,0 +1,21 @@
+{
+  "name": "orders-service",
+  "version": "1.0.0",
+  "description": "Orders microservice for StockPulse",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js"
+  },
+  "author": "Siya Patel",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.16.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}

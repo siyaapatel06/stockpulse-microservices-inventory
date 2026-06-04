@@ -1,0 +1,39 @@
+services:
+  auth-service:
+    build: ./apps/auth-service
+    ports:
+      - "4000:4000"
+
+  inventory-service:
+    build: ./apps/inventory-service
+    ports:
+      - "4001:4001"
+
+  orders-service:
+    build: ./apps/orders-service
+    ports:
+      - "4002:4002"
+    environment:
+      INVENTORY_SERVICE_URL: http://inventory-service:4001
+    depends_on:
+      - inventory-service
+
+  api-gateway:
+    build: ./apps/api-gateway
+    ports:
+      - "4003:4003"
+    environment:
+      AUTH_SERVICE_URL: http://auth-service:4000
+      INVENTORY_SERVICE_URL: http://inventory-service:4001
+      ORDERS_SERVICE_URL: http://orders-service:4002
+    depends_on:
+      - auth-service
+      - inventory-service
+      - orders-service
+
+  admin-dashboard:
+    build: ./apps/admin-dashboard
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api-gateway
